@@ -1,0 +1,31 @@
+{
+  "name": "exec-utils",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xunnamius/exec-utils.git"
+  },
+  "license": "MIT",
+  "author": "Xunnamius",
+  "type": "commonjs",
+  "workspaces": [
+    "packages/*",
+    "!packages/*.ignore*"
+  ],
+  "scripts": {
+    "clean": "NODE_NO_WARNINGS=1 xscripts clean --scope unlimited",
+    "format": "NODE_NO_WARNINGS=1 xscripts format --hush --scope unlimited",
+    "info": "NODE_NO_WARNINGS=1 xscripts project info",
+    "lint": "npm run lint:packages:all --",
+    "lint:packages:all": "NODE_NO_WARNINGS=1 xscripts lint --scope unlimited",
+    "lint:project": "NODE_NO_WARNINGS=1 xscripts project lint",
+    "list-tasks": "NODE_NO_WARNINGS=1 xscripts list-tasks",
+    "prepare": "NODE_NO_WARNINGS=1 xscripts project prepare",
+    "renovate": "NODE_NO_WARNINGS=1 xscripts project renovate",
+    "test": "npm run test:packages:all --",
+    "test:packages:all": "NODE_NO_WARNINGS=1 xscripts test --scope unlimited --coverage"
+  },
+  "devDependencies": {
+    "@-xun/scripts": "^1.25.0"
+  }
+}
