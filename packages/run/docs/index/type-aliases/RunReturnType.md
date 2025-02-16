@@ -8,7 +8,7 @@
 
 > **RunReturnType**\<`OptionsType`, `CoerceOutputTo`\>: `CoerceOutputTo` *extends* `"string"` ? `Merge`\<`ExecaResult`\<`OptionsType`\>, \{ `stderr`: `string`; `stdout`: `string`; \}\> : `CoerceOutputTo` *extends* `"array"` ? `Merge`\<`ExecaResult`\<`OptionsType`\>, \{ `stderr`: `string`[]; `stdout`: `string`[]; \}\> : `ExecaResult`\<`OptionsType`\>
 
-Defined in: [packages/run/src/index.ts:35](https://github.com/Xunnamius/exec-utils/blob/1d301924c61bd522d2363c0dc0b2b266cbb947bc/packages/run/src/index.ts#L35)
+Defined in: [packages/run/src/index.ts:35](https://github.com/Xunnamius/exec-utils/blob/0eed4afa7b460d45a119056087c61813546141ce/packages/run/src/index.ts#L35)
 
 ## Type Parameters
 
