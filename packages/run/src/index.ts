@@ -191,15 +191,9 @@ export async function runNoRejectOnBadExit<
 export async function runNoRejectOnBadExit(
   file: string,
   args?: string[],
-  {
-    useIntermediate,
-    coerceOutputToString = true,
-    ...execaOptions
-  }: RunOptions & {
-    reject?: never;
-  } = {}
+  options: Omit<RunOptions, 'reject'> = {}
 ): Promise<RunReturnType<RunOptions, 'string' | 'array' | 'n/a'>> {
-  return run(file, args, { ...execaOptions, reject: false });
+  return run(file, args, { ...options, reject: false });
 }
 
 /**
