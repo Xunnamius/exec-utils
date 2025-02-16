@@ -20,7 +20,6 @@
     "lint:packages:all": "NODE_NO_WARNINGS=1 xscripts lint --scope unlimited",
     "lint:project": "NODE_NO_WARNINGS=1 xscripts project lint",
     "list-tasks": "NODE_NO_WARNINGS=1 xscripts list-tasks",
-    "prepare": "NODE_NO_WARNINGS=1 xscripts project prepare",
     "renovate": "NODE_NO_WARNINGS=1 xscripts project renovate",
     "test": "npm run test:packages:all --",
     "test:packages:all": "NODE_NO_WARNINGS=1 xscripts test --scope unlimited --coverage"
