@@ -20,9 +20,7 @@ export type RunOptions = ExecaOptions & {
    * Access the {@link RunIntermediateReturnType} object, a thin wrapper around
    * execa's {@link ExecaResultPromise}, via this callback function.
    */
-  useIntermediate?: (
-    intermediateResult: RunIntermediateReturnType
-  ) => Promisable<void>;
+  useIntermediate?: (intermediateResult: RunIntermediateReturnType) => Promisable<void>;
   /**
    * If `true`, {@link RunReturnType.stdout} and {@link RunReturnType.stderr}
    * will be coerced to string values. If they are `undefined`, they will be
@@ -43,9 +41,8 @@ export type RunReturnType<
     ? Merge<ExecaResult<OptionsType>, { stdout: string[]; stderr: string[] }>
     : ExecaResult<OptionsType>;
 
-export type RunIntermediateReturnType<
-  OptionsType extends RunOptions = RunOptions
-> = ExecaResultPromise<OptionsType>;
+export type RunIntermediateReturnType<OptionsType extends RunOptions = RunOptions> =
+  ExecaResultPromise<OptionsType>;
 
 /**
  * Runs (executes) `file` with the given `args` with respect to the given
@@ -93,11 +90,7 @@ export async function run<OptionsType extends RunOptions>(
 export async function run(
   file: string,
   args?: string[],
-  {
-    useIntermediate,
-    coerceOutputToString = true,
-    ...execaOptions
-  }: RunOptions = {}
+  { useIntermediate, coerceOutputToString = true, ...execaOptions }: RunOptions = {}
 ): Promise<RunReturnType<RunOptions, 'string' | 'array' | 'n/a'>> {
   const runDebug = debug.extend(String(++runCounter));
 
@@ -108,11 +101,7 @@ export async function run(
   coerceOutputToString &&= !execaOptions.lines;
   runDebug('output coercion: %O', coerceOutputToString);
 
-  const intermediateResult = (await import('execa')).execa(
-    file,
-    args,
-    execaOptions
-  );
+  const intermediateResult = (await import('execa')).execa(file, args, execaOptions);
 
   await useIntermediate?.(intermediateResult);
   const finalResult = await intermediateResult;
@@ -236,9 +225,7 @@ export function runnerFactory<FactoryOptionsType extends RunOptions>(
    * Note that, by default, this function rejects on a non-zero exit code. Set
    * `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
    */
-  async function factoryRunner<
-    LocalOptionsType extends RunOptions & { lines: true }
-  >(
+  async function factoryRunner<LocalOptionsType extends RunOptions & { lines: true }>(
     args: string[],
     options: LocalOptionsType
   ): Promise<RunReturnType<RunOptions & LocalOptionsType, 'array'>>;
@@ -271,17 +258,11 @@ export function runnerFactory<FactoryOptionsType extends RunOptions>(
   ): Promise<
     Simplify<
       FactoryOptionsType extends RunOptions & { lines: true }
-        ? RunReturnType<
-            RunOptions & FactoryOptionsType & LocalOptionsType,
-            'array'
-          >
+        ? RunReturnType<RunOptions & FactoryOptionsType & LocalOptionsType, 'array'>
         : FactoryOptionsType extends RunOptions & {
               coerceOutputToString: false;
             }
-          ? RunReturnType<
-              RunOptions & FactoryOptionsType & LocalOptionsType,
-              'n/a'
-            >
+          ? RunReturnType<RunOptions & FactoryOptionsType & LocalOptionsType, 'n/a'>
           : RunReturnType<RunOptions & FactoryOptionsType & LocalOptionsType>
     >
   >;

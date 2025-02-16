@@ -1,30 +1,47 @@
 {
-  "name": "exec-utils",
+  "name": "exec-utils-monorepo",
+  "version": "0.0.0-monorepo",
   "private": true,
+  "description": "Monorepo for the exec-utils project",
+  "keywords": [],
+  "homepage": "https://github.com/Xunnamius/exec-utils#readme",
+  "bugs": {
+    "url": "https://github.com/Xunnamius/exec-utils/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Xunnamius/exec-utils.git"
   },
   "license": "MIT",
   "author": "Xunnamius",
+  "sideEffects": false,
   "type": "commonjs",
   "workspaces": [
     "packages/*",
     "!packages/*.ignore*"
   ],
   "scripts": {
-    "clean": "NODE_NO_WARNINGS=1 xscripts clean --scope unlimited",
-    "format": "NODE_NO_WARNINGS=1 xscripts format --hush --scope unlimited",
-    "info": "NODE_NO_WARNINGS=1 xscripts project info",
-    "lint": "npm run lint:packages:all --",
-    "lint:packages:all": "NODE_NO_WARNINGS=1 xscripts lint --scope unlimited",
-    "lint:project": "NODE_NO_WARNINGS=1 xscripts project lint",
-    "list-tasks": "NODE_NO_WARNINGS=1 xscripts list-tasks",
-    "renovate": "NODE_NO_WARNINGS=1 xscripts project renovate",
-    "test": "npm run test:packages:all --",
-    "test:packages:all": "NODE_NO_WARNINGS=1 xscripts test --scope unlimited --coverage"
+    "build:topological": "symbiote project topology --run build --env NODE_NO_WARNINGS=1",
+    "clean": "symbiote clean --env NODE_NO_WARNINGS=1 --scope unlimited",
+    "format": "symbiote format --env NODE_NO_WARNINGS=1 --hush --scope unlimited",
+    "info": "symbiote project info --env NODE_NO_WARNINGS=1",
+    "lint:packages": "symbiote lint --env NODE_NO_WARNINGS=1 --hush --scope unlimited",
+    "lint:project": "symbiote project lint --env NODE_NO_WARNINGS=1",
+    "lint:topological": "symbiote project topology --run lint --env NODE_NO_WARNINGS=1",
+    "list-tasks": "symbiote list-tasks --env NODE_NO_WARNINGS=1 --scope unlimited",
+    "prepare": "symbiote project prepare --env NODE_NO_WARNINGS=1",
+    "release:topological": "symbiote project topology --run release --env NODE_NO_WARNINGS=1",
+    "renovate": "symbiote project renovate --env NODE_NO_WARNINGS=1 --github-reconfigure-repo --regenerate-assets --assets-preset lib",
+    "renovate:aliases": "symbiote project renovate --env NODE_NO_WARNINGS=1 --regenerate-assets --assets-preset lib --only-aliases",
+    "start": "symbiote start --env NODE_NO_WARNINGS=1 --",
+    "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage",
+    "test:packages:all:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit --scope unlimited --coverage",
+    "test:topological": "symbiote project topology --run test --env NODE_NO_WARNINGS=1"
   },
   "devDependencies": {
     "@-xun/symbiote": "^2.24.1"
+  },
+  "engines": {
+    "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
   }
 }

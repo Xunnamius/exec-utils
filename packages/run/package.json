@@ -4,12 +4,11 @@
   "description": "A utility wrapper around execa",
   "keywords": [
     "execa",
-    "execa",
     "spawn",
     "spawn_child",
     "run"
   ],
-  "homepage": "https://github.com/Xunnamius/exec-utils#readme",
+  "homepage": "https://github.com/Xunnamius/exec-utils/tree/main/packages/run#readme",
   "bugs": {
     "url": "https://github.com/Xunnamius/exec-utils/issues"
   },
@@ -47,39 +46,34 @@
   ],
   "scripts": {
     "build": "npm run build:dist --",
-    "build:changelog": "NODE_NO_WARNINGS=1 xscripts build changelog",
-    "build:dist": "NODE_NO_WARNINGS=1 xscripts build distributables",
-    "build:docs": "NODE_NO_WARNINGS=1 xscripts build docs",
-    "build:transpiled": "npm run build:transpiled:test",
-    "build:transpiled:dev": "NODE_NO_WARNINGS=1 xscripts build distributables --generate-intermediates-for development",
-    "build:transpiled:test": "NODE_NO_WARNINGS=1 xscripts build distributables --generate-intermediates-for test",
-    "clean": "NODE_NO_WARNINGS=1 xscripts clean",
-    "format": "NODE_NO_WARNINGS=1 xscripts format --hush",
-    "info": "NODE_NO_WARNINGS=1 xscripts project info",
-    "lint": "npm run lint:package:source --",
-    "lint:package:all": "NODE_NO_WARNINGS=1 xscripts lint",
-    "lint:package:source": "NODE_NO_WARNINGS=1 xscripts lint --scope this-package-source",
-    "lint:packages:all": "NODE_NO_WARNINGS=1 xscripts lint --scope unlimited",
-    "lint:project": "NODE_NO_WARNINGS=1 xscripts project lint",
-    "list-tasks": "NODE_NO_WARNINGS=1 xscripts list-tasks --scope this-package",
-    "release": "NODE_NO_WARNINGS=1 xscripts release",
-    "renovate": "NODE_NO_WARNINGS=1 xscripts project renovate",
-    "start": "NODE_NO_WARNINGS=1 xscripts start --",
+    "build:changelog": "symbiote build changelog --env NODE_NO_WARNINGS=1",
+    "build:dist": "symbiote build distributables --env NODE_NO_WARNINGS=1 --not-multiversal",
+    "build:docs": "symbiote build docs --env NODE_NO_WARNINGS=1",
+    "clean": "symbiote clean --env NODE_NO_WARNINGS=1",
+    "format": "symbiote format --env NODE_NO_WARNINGS=1 --hush",
+    "info": "symbiote project info --env NODE_NO_WARNINGS=1",
+    "lint": "npm run lint:package --",
+    "lint:package": "symbiote lint --env NODE_NO_WARNINGS=1 --hush",
+    "lint:packages": "symbiote lint --env NODE_NO_WARNINGS=1 --hush --scope unlimited",
+    "lint:project": "symbiote project lint --env NODE_NO_WARNINGS=1",
+    "list-tasks": "symbiote list-tasks --env NODE_NO_WARNINGS=1 --scope this-package",
+    "release": "symbiote release --env NODE_NO_WARNINGS=1",
+    "start": "symbiote start --env NODE_NO_WARNINGS=1 --",
     "test": "npm run test:package:unit --",
-    "test:package:all": "NODE_NO_WARNINGS=1 xscripts test --coverage",
-    "test:package:e2e": "NODE_NO_WARNINGS=1 xscripts test --type end-to-end",
-    "test:package:integration": "NODE_NO_WARNINGS=1 xscripts test --type integration",
-    "test:package:unit": "NODE_NO_WARNINGS=1 xscripts test --type unit",
-    "test:packages:all": "NODE_NO_WARNINGS=1 xscripts test --scope unlimited"
+    "test:package:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --coverage",
+    "test:package:e2e": "symbiote test --env NODE_NO_WARNINGS=1 --tests end-to-end",
+    "test:package:integration": "symbiote test --env NODE_NO_WARNINGS=1 --tests integration",
+    "test:package:unit": "symbiote test --env NODE_NO_WARNINGS=1 --tests unit type",
+    "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
     "core-js": "^3.40.0",
+    "execa": "^9.5.2",
     "rejoinder": "^1.2.4",
-    "type-fest": "^4.34.1",
-    "execa": "^9.5.2"
+    "type-fest": "^4.34.1"
   },
   "engines": {
-    "node": "18.20.0 || ^20.15.0 || >=22.5.0"
+    "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
   },
   "publishConfig": {
     "access": "public",

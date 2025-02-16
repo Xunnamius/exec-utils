@@ -19,6 +19,13 @@
     "outDir": "dist",
     "rootDir": "../../"
   },
-  // ? Include patterns are also used by tooling like eslint (using node glob)
-  "include": ["types/**/*", "src/**/*"]
+  "include": ["../../types/**/*", "src/**/*"],
+  "exclude": [
+    "**/dist/**/*",
+    "**/test/fixtures/**/*",
+    "**/node_modules/**/*",
+    "**/*.ignore",
+    "**/*.ignore.*/**/*",
+    "**/ignore.*"
+  ]
 }

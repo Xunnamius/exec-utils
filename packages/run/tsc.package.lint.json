@@ -1,9 +1,9 @@
 /**
- ** This file extends the project root tsconfig.json file for use with
- ** typedoc at the package level.
+ ** This file extends the project root tsconfig.json file for use with linting
+ ** all files at the package level. Only tsc gets its paths from this file.
  **
- ** Use this file to exert some control over how typedoc generates
- ** package-specific documentation.
+ ** Use this file to exert some control over which files are considered
+ ** part of the current package and which will be ignored.
  */
 
 {
@@ -12,8 +12,9 @@
   "include": [
     "../../test/setup.ts",
     "../../types/**/*",
-    "src/**/*",
-    "test/**/*"
+    "**/*",
+    "**/.*/**/*",
+    "**/.*"
   ],
   "exclude": [
     "**/dist/**/*",

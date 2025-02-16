@@ -1,3 +1,3 @@
-// eslint-disable-next-line jest/no-export
-export {};
+// * These tests ensure the exported interfaces under test function as expected.
+
 test.todo('this');
