@@ -1,7 +1,7 @@
 <!-- symbiote-template-region-start 1 -->
 
 <p align="center" width="100%">
-  <img width="300" src="https://raw.githubusercontent.com/Xunnamius/exec-utils/refs/heads/main/packages/run/logo.png">
+  <img width="175" src="https://raw.githubusercontent.com/Xunnamius/exec-utils/refs/heads/main/packages/run/logo.png">
 </p>
 
 <p align="center" width="100%">
