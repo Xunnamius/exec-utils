@@ -49,7 +49,7 @@ This monorepo contains the following packages:
 [x-badge-semanticrelease-link]:
   https://github.com/semantic-release/semantic-release
 [1]: https://github.com/conventional-changelog/conventional-changelog
-[2]: https://github.com/Xunnamius/xscripts
+[2]: https://github.com/Xunnamius/symbiote
 [3]:
   https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-core#api
 [4]:

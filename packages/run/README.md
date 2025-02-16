@@ -58,7 +58,7 @@ TODO
 [x-badge-blm-image]: https://xunn.at/badge-blm 'Join the movement!'
 [x-badge-blm-link]: https://xunn.at/donate-blm
 [x-badge-codecov-image]:
-  https://img.shields.io/codecov/c/github/Xunnamius/xrun/main?style=flat-square&token=HWRIOBAAPW
+  https://img.shields.io/codecov/c/github/Xunnamius/xrun/main?style=flat-square&token=HWRIOBAAPW&flag=package.main_run
   'Is this package well-tested?'
 [x-badge-codecov-link]: https://codecov.io/gh/Xunnamius/xrun
 [x-badge-downloads-image]:

@@ -26,6 +26,6 @@
     "test:packages:all": "NODE_NO_WARNINGS=1 xscripts test --scope unlimited --coverage"
   },
   "devDependencies": {
-    "@-xun/scripts": "^1.25.0"
+    "@-xun/symbiote": "^2.24.1"
   }
 }

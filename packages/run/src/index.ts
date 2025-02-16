@@ -1,5 +1,5 @@
 // TODO: use rejoinder instead
-import { debugFactory } from '@-xun/debug';
+import { createDebug } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'rootverse+run:src/constant.ts';
 
