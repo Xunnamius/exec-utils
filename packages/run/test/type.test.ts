@@ -7,7 +7,7 @@ import {
   runnerFactory,
   runNoRejectOnBadExit,
   runWithInheritedIo
-} from 'universe+run:index.ts';
+} from 'universe+run';
 
 describe('::run', () => {
   it('should be rejectable', async () => {

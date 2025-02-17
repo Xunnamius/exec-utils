@@ -8,46 +8,9 @@
 
 ## Call Signature
 
-> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ `all`: `ResultAllProperty`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"all"`\]\>; `cause`: `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `code`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode`: `number`; `failed`: `boolean`; `ipcOutput`: `ResultIpcAsync`\<`FdSpecificOption`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"buffer"`\], `"ipc"`\>, `HasIpcOption`\<`StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipc"`\], `"ipcInput"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipcInput"`\] : `undefined`, `"gracefulCancel"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"gracefulCancel"`\] : `undefined`\>\>; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `name`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `originalMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `signal`: `Signals`; `signalDescription`: `string`; `stack`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `stderr`: `string`[]; `stdio`: `MapResultStdio`\<`StdioOptionNormalized`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"stdio"`\]\>\>; `stdout`: `string`[]; `timedOut`: `boolean`; \}\>
+> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: (...)\[\]; stdout: (...)\[\] \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:149](https://github.com/Xunnamius/exec-utils/blob/0eed4afa7b460d45a119056087c61813546141ce/packages/run/src/index.ts#L149)
-
-Runs (executes) `file` with the given `args` with respect to the given
-`options`.
-
-Note that this function DOES NOT REJECT on a non-zero exit code.
-
-### Type Parameters
-
-• **OptionsType** *extends* `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `object`
-
-### Parameters
-
-#### file
-
-`string`
-
-#### args
-
-`string`[]
-
-#### options
-
-`OptionsType`
-
-### Returns
-
-`Promise`\<\{ `all`: `ResultAllProperty`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"all"`\]\>; `cause`: `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `code`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode`: `number`; `failed`: `boolean`; `ipcOutput`: `ResultIpcAsync`\<`FdSpecificOption`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"buffer"`\], `"ipc"`\>, `HasIpcOption`\<`StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipc"`\], `"ipcInput"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipcInput"`\] : `undefined`, `"gracefulCancel"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"gracefulCancel"`\] : `undefined`\>\>; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `name`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `originalMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `signal`: `Signals`; `signalDescription`: `string`; `stack`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `stderr`: `string`[]; `stdio`: `MapResultStdio`\<`StdioOptionNormalized`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"stdio"`\]\>\>; `stdout`: `string`[]; `timedOut`: `boolean`; \}\>
-
-### See
-
-[run](run.md)
-
-## Call Signature
-
-> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<`Result`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\>\>
-
-Defined in: [packages/run/src/index.ts:164](https://github.com/Xunnamius/exec-utils/blob/0eed4afa7b460d45a119056087c61813546141ce/packages/run/src/index.ts#L164)
+Defined in: [packages/run/src/index.ts:168](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L168)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.
@@ -74,7 +37,7 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 ### Returns
 
-`Promise`\<`Result`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\>\>
+`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: (...)\[\]; stdout: (...)\[\] \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>
 
 ### See
 
@@ -82,9 +45,46 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 ## Call Signature
 
-> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`?, `options`?): `Promise`\<\{ `all`: `ResultAllProperty`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"all"`\]\>; `cause`: `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `code`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode`: `number`; `failed`: `boolean`; `ipcOutput`: `ResultIpcAsync`\<`FdSpecificOption`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"buffer"`\], `"ipc"`\>, `HasIpcOption`\<`StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipc"`\], `"ipcInput"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipcInput"`\] : `undefined`, `"gracefulCancel"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"gracefulCancel"`\] : `undefined`\>\>; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `name`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `originalMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `signal`: `Signals`; `signalDescription`: `string`; `stack`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `stderr`: `string`; `stdio`: `MapResultStdio`\<`StdioOptionNormalized`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"stdio"`\]\>\>; `stdout`: `string`; `timedOut`: `boolean`; \}\>
+> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<((...) & (...))\["all"\] extends true ? Pick\<Result\<(...)\>, "all"\> : \{ all: undefined \}\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:184](https://github.com/Xunnamius/exec-utils/blob/0eed4afa7b460d45a119056087c61813546141ce/packages/run/src/index.ts#L184)
+Defined in: [packages/run/src/index.ts:183](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L183)
+
+Runs (executes) `file` with the given `args` with respect to the given
+`options`.
+
+Note that this function DOES NOT REJECT on a non-zero exit code.
+
+### Type Parameters
+
+• **OptionsType** *extends* `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `object`
+
+### Parameters
+
+#### file
+
+`string`
+
+#### args
+
+`string`[]
+
+#### options
+
+`OptionsType`
+
+### Returns
+
+`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<((...) & (...))\["all"\] extends true ? Pick\<Result\<(...)\>, "all"\> : \{ all: undefined \}\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>
+
+### See
+
+[run](run.md)
+
+## Call Signature
+
+> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`?, `options`?): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\>)\[KeyType\] \}\>
+
+Defined in: [packages/run/src/index.ts:203](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L203)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.
@@ -114,7 +114,7 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 ### Returns
 
-`Promise`\<\{ `all`: `ResultAllProperty`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"all"`\]\>; `cause`: `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `code`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode`: `number`; `failed`: `boolean`; `ipcOutput`: `ResultIpcAsync`\<`FdSpecificOption`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"buffer"`\], `"ipc"`\>, `HasIpcOption`\<`StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipc"`\], `"ipcInput"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"ipcInput"`\] : `undefined`, `"gracefulCancel"` *extends* keyof `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\> ? `StricterOptions`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`, `Options`\>\[`"gracefulCancel"`\] : `undefined`\>\>; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `name`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `originalMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `signal`: `Signals`; `signalDescription`: `string`; `stack`: `undefined` \| `string` & `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"reject"`\] *extends* `false` ? `unknown` : `never`; `stderr`: `string`; `stdio`: `MapResultStdio`\<`StdioOptionNormalized`\<`Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `OptionsType`\[`"stdio"`\]\>\>; `stdout`: `string`; `timedOut`: `boolean`; \}\>
+`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\>)\[KeyType\] \}\>
 
 ### See
 

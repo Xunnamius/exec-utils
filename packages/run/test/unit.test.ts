@@ -5,7 +5,7 @@ import {
   runnerFactory,
   runNoRejectOnBadExit,
   runWithInheritedIo
-} from 'universe+run:index.ts';
+} from 'universe+run';
 
 const testArgs = ['-p', String.raw`process.env.XUNIT_TESTX.replaceAll("\\n", "\n")`];
 const testOptions = { env: { XUNIT_TESTX: String.raw`a\nb\nc\n1\n2\n3` } };
