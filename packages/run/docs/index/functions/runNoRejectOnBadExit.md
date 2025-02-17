@@ -10,7 +10,7 @@
 
 > **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: (...)\[\]; stdout: (...)\[\] \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:168](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L168)
+Defined in: [packages/run/src/index.ts:168](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L168)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.
@@ -47,7 +47,7 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 > **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<((...) & (...))\["all"\] extends true ? Pick\<Result\<(...)\>, "all"\> : \{ all: undefined \}\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:183](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L183)
+Defined in: [packages/run/src/index.ts:183](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L183)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.
@@ -84,7 +84,7 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 > **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`?, `options`?): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\>)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:203](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L203)
+Defined in: [packages/run/src/index.ts:203](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L203)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.

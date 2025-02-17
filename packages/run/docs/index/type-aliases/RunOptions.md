@@ -8,7 +8,7 @@
 
 > **RunOptions**: `ExecaOptions` & `object`
 
-Defined in: [packages/run/src/index.ts:18](https://github.com/Xunnamius/exec-utils/blob/99f80c9423153055098aa3bf7b6f903f3ee1b65f/packages/run/src/index.ts#L18)
+Defined in: [packages/run/src/index.ts:18](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L18)
 
 ## Type declaration
 
