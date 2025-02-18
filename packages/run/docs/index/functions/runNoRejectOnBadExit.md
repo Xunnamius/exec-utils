@@ -8,18 +8,19 @@
 
 ## Call Signature
 
-> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: (...)\[\]; stdout: (...)\[\] \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>
+> **runNoRejectOnBadExit**(`file`, `args`?, `options`?): `Promise`\<\{ `all`: `undefined`; `cause`: `unknown`; `code`: `undefined` \| `string`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode`: `number`; `failed`: `boolean`; `ipcOutput`: \[\] \| (`null` \| `string` \| `number` \| `boolean` \| `object` \| readonly `JsonMessage`[] \| \{\})[]; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string`; `name`: `undefined` \| `string`; `originalMessage`: `undefined` \| `string`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string`; `signal`: `Signals`; `signalDescription`: `string`; `stack`: `undefined` \| `string`; `stderr`: `string`; `stdio`: `MapResultStdio`\<readonly \[`StdinOptionCommon`\<`false`, `false`\>, `StdoutStderrOptionCommon`\<`false`, `false`\>, `StdoutStderrOptionCommon`\<`false`, `false`\>, `StdioExtraOptionCommon`\<`false`\>\] \| readonly \[`undefined`, `undefined`, `undefined`\] \| readonly \[`"pipe"`, `"pipe"`, `"pipe"`\] \| readonly \[`"inherit"`, `"inherit"`, `"inherit"`\] \| readonly \[`"ignore"`, `"ignore"`, `"ignore"`\] \| readonly \[`"overlapped"`, `"overlapped"`, `"overlapped"`\]\>; `stdout`: `string`; `timedOut`: `boolean`; \}\>
 
-Defined in: [packages/run/src/index.ts:168](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L168)
+Defined in: [packages/run/src/index.ts:113](https://github.com/Xunnamius/exec-utils/blob/06735914ae278783fb4ee6a4cc1a3732191459ee/packages/run/src/index.ts#L113)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.
 
-Note that this function DOES NOT REJECT on a non-zero exit code.
+Note that, by default, this function:
 
-### Type Parameters
+1. **DOES NOT REJECT on a non-zero exit code.**
 
-• **OptionsType** *extends* `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `object`
+2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
+   true`) to override this.
 
 ### Parameters
 
@@ -27,76 +28,37 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 `string`
 
-#### args
+#### args?
 
 `string`[]
 
-#### options
+#### options?
 
-`OptionsType`
+`undefined`
 
 ### Returns
 
-`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: (...)\[\]; stdout: (...)\[\] \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>
-
-### See
-
-[run](run.md)
+`Promise`\<\{ `all`: `undefined`; `cause`: `unknown`; `code`: `undefined` \| `string`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode`: `number`; `failed`: `boolean`; `ipcOutput`: \[\] \| (`null` \| `string` \| `number` \| `boolean` \| `object` \| readonly `JsonMessage`[] \| \{\})[]; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string`; `name`: `undefined` \| `string`; `originalMessage`: `undefined` \| `string`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string`; `signal`: `Signals`; `signalDescription`: `string`; `stack`: `undefined` \| `string`; `stderr`: `string`; `stdio`: `MapResultStdio`\<readonly \[`StdinOptionCommon`\<`false`, `false`\>, `StdoutStderrOptionCommon`\<`false`, `false`\>, `StdoutStderrOptionCommon`\<`false`, `false`\>, `StdioExtraOptionCommon`\<`false`\>\] \| readonly \[`undefined`, `undefined`, `undefined`\] \| readonly \[`"pipe"`, `"pipe"`, `"pipe"`\] \| readonly \[`"inherit"`, `"inherit"`, `"inherit"`\] \| readonly \[`"ignore"`, `"ignore"`, `"ignore"`\] \| readonly \[`"overlapped"`, `"overlapped"`, `"overlapped"`\]\>; `stdout`: `string`; `timedOut`: `boolean`; \}\>
 
 ## Call Signature
 
-> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`, `options`): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<((...) & (...))\["all"\] extends true ? Pick\<Result\<(...)\>, "all"\> : \{ all: undefined \}\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>
+> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`?, `options`?): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\[\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<OptionsType\> & \{ \[Key in (keyof Options) \| "useIntermediate" \| "coerceOutputToString" as Key extends keyof (...) ? never : Key\]: OmitIndexSignature\<(...)\>\[Key\] \} & OmitIndexSignature\<OptionsType\>)\[KeyType\] \}\] extends \[ReifiedOptionsType\] ? ReifiedOptionsType extends \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "cwd" \| "stdio" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "exitCode" \| "signal" \| "signalDescription" as Key extends keyof (...) ? never : Key\]: OmitIndexSignature\<(...)\>\[Key\] \} & OmitIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\>)\[KeyType\] \} : ReifiedOptionsType extends \{ coerceOutputToString: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \} : Result\<ReifiedOptionsType\> : never)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:183](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L183)
+Defined in: [packages/run/src/index.ts:118](https://github.com/Xunnamius/exec-utils/blob/06735914ae278783fb4ee6a4cc1a3732191459ee/packages/run/src/index.ts#L118)
 
 Runs (executes) `file` with the given `args` with respect to the given
 `options`.
 
-Note that this function DOES NOT REJECT on a non-zero exit code.
+Note that, by default, this function:
+
+1. **DOES NOT REJECT on a non-zero exit code.**
+
+2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
+   true`) to override this.
 
 ### Type Parameters
 
-• **OptionsType** *extends* `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\> & `object`
-
-### Parameters
-
-#### file
-
-`string`
-
-#### args
-
-`string`[]
-
-#### options
-
-`OptionsType`
-
-### Returns
-
-`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<((...) & (...))\["all"\] extends true ? Pick\<Result\<(...)\>, "all"\> : \{ all: undefined \}\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<(Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? Pick\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>
-
-### See
-
-[run](run.md)
-
-## Call Signature
-
-> **runNoRejectOnBadExit**\<`OptionsType`\>(`file`, `args`?, `options`?): `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\>)\[KeyType\] \}\>
-
-Defined in: [packages/run/src/index.ts:203](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L203)
-
-Runs (executes) `file` with the given `args` with respect to the given
-`options`.
-
-With this call signature, `stdout` and `stderr` will be coerced to type
-`string`.
-
-Note that this function DOES NOT REJECT on a non-zero exit code.
-
-### Type Parameters
-
-• **OptionsType** *extends* `Omit`\<[`RunOptions`](../type-aliases/RunOptions.md), `"reject"`\>
+• **OptionsType** *extends* `Omit`\<[`RunOptions`](../../types/type-aliases/RunOptions.md), `"reject"`\>
 
 ### Parameters
 
@@ -114,8 +76,4 @@ Note that this function DOES NOT REJECT on a non-zero exit code.
 
 ### Returns
 
-`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((...)\[(...)\] extends true ? \{ all: ... \} : \{ all: ... \})\> ? never : Key\]: OmitIndexSignature\<Result\<Omit\<RunOptions, "reject"\> & OptionsType\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string; stdout: string \} & ((Omit\<RunOptions, "reject"\> & OptionsType)\["all"\] extends true ? \{ all: string \} : \{ all: undefined \})\>)\[KeyType\] \}\>
-
-### See
-
-[run](run.md)
+`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\[\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<OptionsType\> & \{ \[Key in (keyof Options) \| "useIntermediate" \| "coerceOutputToString" as Key extends keyof (...) ? never : Key\]: OmitIndexSignature\<(...)\>\[Key\] \} & OmitIndexSignature\<OptionsType\>)\[KeyType\] \}\] extends \[ReifiedOptionsType\] ? ReifiedOptionsType extends \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "cwd" \| "stdio" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "exitCode" \| "signal" \| "signalDescription" as Key extends keyof (...) ? never : Key\]: OmitIndexSignature\<(...)\>\[Key\] \} & OmitIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\>)\[KeyType\] \} : ReifiedOptionsType extends \{ coerceOutputToString: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \} : Result\<ReifiedOptionsType\> : never)\[KeyType\] \}\>

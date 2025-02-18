@@ -6,20 +6,28 @@
 
 # Function: runnerFactory()
 
-> **runnerFactory**\<`FactoryOptionsType`\>(`file`, `args`?, `options`?): \<`LocalOptionsType`\>(`args`, `options`) => `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \})\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\> ? never : Key\]: OmitIndexSignature\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \})\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>\<`LocalOptionsType`\>(`args`, `options`) => `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Options & \{ coerceOutputToString?: (...) \| (...) \| (...); useIntermediate?: (...) \| (...) \} & \{ \[KeyType in (...) \| (...) \| (...)\]: (...)\[(...)\] \})\["all"\] extends true ? Pick\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<(...)\[(...)\] extends true ? Pick\<(...), (...)\> : \{ all: ... \}\> ? never : Key\]: OmitIndexSignature\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>\>\[Key\] \} & OmitIndexSignature\<(Options & \{ coerceOutputToString?: (...) \| (...) \| (...); useIntermediate?: (...) \| (...) \} & \{ \[KeyType in (...) \| (...) \| (...)\]: (...)\[(...)\] \})\["all"\] extends true ? Pick\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>\<`LocalOptionsType`\>(`args`?, `options`?) => `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (FactoryOptionsType extends Options & \{ coerceOutputToString?: boolean; useIntermediate?: (intermediateResult: RunIntermediateReturnType) =\> Promisable\<void\> \} & \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof (...) ? never : Key\]: OmitIndexSignature\<(...)\>\[Key\] \} & OmitIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\>)\[KeyType\] \} : FactoryOptionsType extends Options & \{ coerceOutputToString?: boolean; useIntermediate?: (intermediateResult: RunIntermediateReturnType) =\> Promisable\<(...)\> \} & \{ coerceOutputToString: false \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) extends (...) ? (...) : (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) extends (...) ? (...) : (...)\>)\[KeyType\] \} : \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \})\[KeyType\] \}\>
+> **runnerFactory**\<`FactoryOptionsType`\>(`file`, `args`?, `options`?): (`args`?, `options`?) => `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\[\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<FactoryOptionsType\> & \{ \[Key in (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<FactoryOptionsType\>)\[KeyType\] \}\] extends \[ReifiedOptionsType\] ? ReifiedOptionsType extends \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \} : ReifiedOptionsType extends \{ coerceOutputToString: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...)\> & \{ \[Key in (...) as (...)\]: (...) \} & OmitIndexSignature\<(...)\>)\[KeyType\] \} : Result\<ReifiedOptionsType\> : never)\[KeyType\] \}\>\<`LocalOptionsType`\>(`args`?, `options`?) => `Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\[\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ \[KeyType in (...)\]: (...) \}\> & \{ \[Key in (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<\{ \[KeyType in (...)\]: (...) \}\>)\[KeyType\] \}\] extends \[ReifiedOptionsType\] ? ReifiedOptionsType extends \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \} : ReifiedOptionsType extends \{ coerceOutputToString: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...)\> & \{ \[Key in (...) as (...)\]: (...) \} & OmitIndexSignature\<(...)\>)\[KeyType\] \} : Result\<ReifiedOptionsType\> : never)\[KeyType\] \}\>
 
-Defined in: [packages/run/src/index.ts:226](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L226)
+Defined in: [packages/run/src/index.ts:147](https://github.com/Xunnamius/exec-utils/blob/06735914ae278783fb4ee6a4cc1a3732191459ee/packages/run/src/index.ts#L147)
 
 Returns a [run](run.md) function that, when called, runs (executes) `file` with
 the given `args` with respect to the given `options`.
 
 Additional arguments specified via the returned [run](run.md) function will be
-appended to `args`. Additional options specified via the returned [run](run.md)
-function will overwrite existing options in `options` (via `Object.assign`).
+appended to `args`. On the other hand, additional options specified via the
+returned [run](run.md) function will _overwrite_ existing options in `options`
+(via `Object.assign`).
+
+Note that, by default, the returned [run](run.md) function:
+
+1. Rejects on a non-zero exit code. Set `reject: false` to override this.
+
+2. Coerces output to a string. Set `coerceOutputToString: false` (or
+   `lines: true`) to override this.
 
 ## Type Parameters
 
-• **FactoryOptionsType** *extends* [`RunOptions`](../type-aliases/RunOptions.md)
+• **FactoryOptionsType** *extends* [`RunOptions`](../../types/type-aliases/RunOptions.md) = [`DefaultRunOptions`](../../types/type-aliases/DefaultRunOptions.md)
 
 ## Parameters
 
@@ -39,65 +47,55 @@ function will overwrite existing options in `options` (via `Object.assign`).
 
 `Function`
 
-Runs (executes) `file` with the given `args` with respect to the given
-`options`.
+Runs (executes) with respect to the factory parameters used to generate
+this function.
 
-With this call signature, `stdout` and `stderr` will be of type `string[]`.
+Additional arguments specified via `args` will be appended to the
+corresponding factory parameter. On the other hand, additional options
+specified via `options` will _overwrite_ corresponding factory options (via
+`Object.assign`).
 
-Note that, by default, this function rejects on a non-zero exit code. Set
-`reject: false` to override this.
+Note that, by default (unless modified at the factory level), this
+function:
 
-### Type Parameters
+1. Rejects on a non-zero exit code. Set `reject: false` to override this.
 
-• **LocalOptionsType** *extends* `Options` & `object` & `object`
-
-### Parameters
-
-#### args
-
-`string`[]
-
-#### options
-
-`LocalOptionsType`
-
-### Returns
-
-`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \})\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\> ? never : Key\]: OmitIndexSignature\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>\>\[Key\] \} & OmitIndexSignature\<\{ stderr: string\[\]; stdout: string\[\] \} & ((Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \})\["all"\] extends true ? \{ all: string\[\] \} : \{ all: undefined \})\>)\[KeyType\] \}\>
-
-Runs (executes) `file` with the given `args` with respect to the given
-`options`.
-
-Note that, by default, this function rejects on a non-zero exit code. Set
-`reject: false` to override this.
-
-### Type Parameters
-
-• **LocalOptionsType** *extends* `Options` & `object` & `object`
+2. Coerces output to a string. Set `coerceOutputToString: false` (or
+   `lines: true`) to override this.
 
 ### Parameters
 
-#### args
+#### args?
 
 `string`[]
 
-#### options
+#### options?
 
-`LocalOptionsType`
+`undefined`
 
 ### Returns
 
-`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(Options & \{ coerceOutputToString?: (...) \| (...) \| (...); useIntermediate?: (...) \| (...) \} & \{ \[KeyType in (...) \| (...) \| (...)\]: (...)\[(...)\] \})\["all"\] extends true ? Pick\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>, "all"\> : \{ all: undefined \}\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof OmitIndexSignature\<(...)\[(...)\] extends true ? Pick\<(...), (...)\> : \{ all: ... \}\> ? never : Key\]: OmitIndexSignature\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>\>\[Key\] \} & OmitIndexSignature\<(Options & \{ coerceOutputToString?: (...) \| (...) \| (...); useIntermediate?: (...) \| (...) \} & \{ \[KeyType in (...) \| (...) \| (...)\]: (...)\[(...)\] \})\["all"\] extends true ? Pick\<Result\<Options & \{ coerceOutputToString?: ...; useIntermediate?: ... \} & \{ \[KeyType in (...)\]: (...) \}\>, "all"\> : \{ all: undefined \}\>)\[KeyType\] \}\>
+`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\[\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<FactoryOptionsType\> & \{ \[Key in (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<FactoryOptionsType\>)\[KeyType\] \}\] extends \[ReifiedOptionsType\] ? ReifiedOptionsType extends \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \} : ReifiedOptionsType extends \{ coerceOutputToString: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...)\> & \{ \[Key in (...) as (...)\]: (...) \} & OmitIndexSignature\<(...)\>)\[KeyType\] \} : Result\<ReifiedOptionsType\> : never)\[KeyType\] \}\>
 
-Runs (executes) `file` with the given `args` with respect to the given
-`options`.
+Runs (executes) with respect to the factory parameters used to generate
+this function.
 
-Note that, by default, this function rejects on a non-zero exit code. Set
-`reject: false` to override this.
+Additional arguments specified via `args` will be appended to the
+corresponding factory parameter. On the other hand, additional options
+specified via `options` will _overwrite_ corresponding factory options (via
+`Object.assign`).
+
+Note that, by default (unless modified at the factory level), this
+function:
+
+1. Rejects on a non-zero exit code. Set `reject: false` to override this.
+
+2. Coerces output to a string. Set `coerceOutputToString: false` (or
+   `lines: true`) to override this.
 
 ### Type Parameters
 
-• **LocalOptionsType** *extends* [`RunOptions`](../type-aliases/RunOptions.md)
+• **LocalOptionsType** *extends* [`RunOptions`](../../types/type-aliases/RunOptions.md)
 
 ### Parameters
 
@@ -111,4 +109,4 @@ Note that, by default, this function rejects on a non-zero exit code. Set
 
 ### Returns
 
-`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (FactoryOptionsType extends Options & \{ coerceOutputToString?: boolean; useIntermediate?: (intermediateResult: RunIntermediateReturnType) =\> Promisable\<void\> \} & \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\> & \{ \[Key in "stdout" \| "stderr" \| "all" \| "stdio" \| "exitCode" \| "cwd" \| "name" \| "message" \| "stack" \| "cause" \| "shortMessage" \| "originalMessage" \| "code" \| "ipcOutput" \| "pipedFrom" \| "command" \| "escapedCommand" \| "durationMs" \| "failed" \| "timedOut" \| "isCanceled" \| "isGracefullyCanceled" \| "isMaxBuffer" \| "isTerminated" \| "isForcefullyTerminated" \| "signal" \| "signalDescription" as Key extends keyof (...) ? never : Key\]: OmitIndexSignature\<(...)\>\[Key\] \} & OmitIndexSignature\<\{ stderr: ...; stdout: ... \} & ((...) extends (...) ? (...) : (...))\>)\[KeyType\] \} : FactoryOptionsType extends Options & \{ coerceOutputToString?: boolean; useIntermediate?: (intermediateResult: RunIntermediateReturnType) =\> Promisable\<(...)\> \} & \{ coerceOutputToString: false \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) extends (...) ? (...) : (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) extends (...) ? (...) : (...)\>)\[KeyType\] \} : \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \})\[KeyType\] \}\>
+`Promise`\<\{ \[KeyType in string \| number \| symbol\]: (\[\{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<\{ \[KeyType in (...)\]: (...) \}\> & \{ \[Key in (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<\{ \[KeyType in (...)\]: (...) \}\>)\[KeyType\] \}\] extends \[ReifiedOptionsType\] ? ReifiedOptionsType extends \{ lines: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...) & (...)\> & \{ \[Key in (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) \| (...) as (...) extends (...) ? (...) : (...)\]: (...)\[(...)\] \} & OmitIndexSignature\<(...) & (...)\>)\[KeyType\] \} : ReifiedOptionsType extends \{ coerceOutputToString: true \} ? \{ \[KeyType in string \| number \| symbol\]: (\{\} & PickIndexSignature\<(...)\> & \{ \[Key in (...) as (...)\]: (...) \} & OmitIndexSignature\<(...)\>)\[KeyType\] \} : Result\<ReifiedOptionsType\> : never)\[KeyType\] \}\>

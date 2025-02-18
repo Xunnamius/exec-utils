@@ -8,9 +8,6 @@
 
 ## Type Aliases
 
-- [RunIntermediateReturnType](type-aliases/RunIntermediateReturnType.md)
-- [RunOptions](type-aliases/RunOptions.md)
-- [RunReturnType](type-aliases/RunReturnType.md)
 - [Subprocess](type-aliases/Subprocess.md)
 
 ## Functions
@@ -19,3 +16,27 @@
 - [runnerFactory](functions/runnerFactory.md)
 - [runNoRejectOnBadExit](functions/runNoRejectOnBadExit.md)
 - [runWithInheritedIo](functions/runWithInheritedIo.md)
+
+## References
+
+### DefaultRunOptions
+
+Re-exports [DefaultRunOptions](../types/type-aliases/DefaultRunOptions.md)
+
+***
+
+### RunIntermediateReturnType
+
+Re-exports [RunIntermediateReturnType](../types/type-aliases/RunIntermediateReturnType.md)
+
+***
+
+### RunOptions
+
+Re-exports [RunOptions](../types/type-aliases/RunOptions.md)
+
+***
+
+### RunReturnType
+
+Re-exports [RunReturnType](../types/type-aliases/RunReturnType.md)

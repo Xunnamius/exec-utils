@@ -2,13 +2,13 @@
 
 ***
 
-[@-xun/run](../../README.md) / [index](../README.md) / RunOptions
+[@-xun/run](../../README.md) / [types](../README.md) / RunOptions
 
 # Type Alias: RunOptions
 
 > **RunOptions**: `ExecaOptions` & `object`
 
-Defined in: [packages/run/src/index.ts:18](https://github.com/Xunnamius/exec-utils/blob/24e04f73027fc1c0874e587fe74999c2394ba6f8/packages/run/src/index.ts#L18)
+Defined in: [packages/run/src/types.ts:12](https://github.com/Xunnamius/exec-utils/blob/06735914ae278783fb4ee6a4cc1a3732191459ee/packages/run/src/types.ts#L12)
 
 ## Type declaration
 
@@ -39,3 +39,7 @@ execa's ExecaResultPromise, via this callback function.
 #### Returns
 
 `Promisable`\<`void`\>
+
+## See
+
+ExecaOptions
