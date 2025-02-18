@@ -2,126 +2,68 @@ import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+run:constant.ts';
 
-import type {
-  Options as ExecaOptions,
-  Result as ExecaResult,
-  ResultPromise as ExecaResultPromise
-} from 'execa' with { 'resolution-mode': 'import' };
+import type { Merge } from 'type-fest';
 
-import type { Merge, Promisable, Simplify } from 'type-fest';
+import type {
+  DefaultRunOptions,
+  RunOptions,
+  RunReturnType
+} from 'universe+run:types.ts';
 
 let runCounter = 0;
 const debug = createDebugLogger({ namespace: globalDebuggerNamespace });
 
 export type { Subprocess } from 'execa' with { 'resolution-mode': 'import' };
-
-export type RunOptions = ExecaOptions & {
-  /**
-   * Access the {@link RunIntermediateReturnType} object, a thin wrapper around
-   * execa's {@link ExecaResultPromise}, via this callback function.
-   */
-  useIntermediate?: (intermediateResult: RunIntermediateReturnType) => Promisable<void>;
-  /**
-   * If `true`, {@link RunReturnType.stdout} and {@link RunReturnType.stderr}
-   * will be coerced to string values. If they are `undefined`, they will be
-   * coerced to empty strings.
-   *
-   * Defaults to `true` unless {@link RunOptions.lines} is `true`, in which case
-   * output will be coerced to an array of strings regardless of this option.
-   */
-  coerceOutputToString?: boolean;
-};
-
-export type RunReturnType<
-  OptionsType extends RunOptions = RunOptions,
-  CoerceOutputTo extends 'string' | 'array' | 'n/a' = 'string'
-> = CoerceOutputTo extends 'string'
-  ? Merge<
-      ExecaResult<OptionsType>,
-      { stdout: string; stderr: string } & (OptionsType['all'] extends true
-        ? { all: string }
-        : { all: undefined })
-    >
-  : CoerceOutputTo extends 'array'
-    ? Merge<
-        ExecaResult<OptionsType>,
-        { stdout: string[]; stderr: string[] } & (OptionsType['all'] extends true
-          ? { all: string[] }
-          : { all: undefined })
-      >
-    : Merge<
-        ExecaResult<OptionsType>,
-        OptionsType['all'] extends true
-          ? Pick<ExecaResult<OptionsType>, 'all'>
-          : { all: undefined }
-      >;
-
-export type RunIntermediateReturnType<OptionsType extends RunOptions = RunOptions> =
-  ExecaResultPromise<OptionsType>;
+export type * from 'universe+run:types.ts';
 
 /**
  * Runs (executes) `file` with the given `args` with respect to the given
  * `options`.
  *
- * With this call signature, `stdout` and `stderr` will be of type `string[]`.
+ * Note that, by default, this function:
  *
- * Note that, by default, this function rejects on a non-zero exit code. Set
- * `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
+ * 1. Rejects on a non-zero exit code. Set `reject: false` to override this, or
+ *    use {@link runNoRejectOnBadExit}.
+ *
+ * 2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
+ *    true`) to override this.
  */
-export async function run<OptionsType extends RunOptions & { lines: true }>(
+export async function run(
   file: string,
-  args: string[],
-  options: OptionsType
-): Promise<RunReturnType<RunOptions & OptionsType, 'array'>>;
-/**
- * Runs (executes) `file` with the given `args` with respect to the given
- * `options`.
- *
- * Note that, by default, this function rejects on a non-zero exit code. Set
- * `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
- */
-export async function run<
-  OptionsType extends RunOptions & { coerceOutputToString: false }
->(
-  file: string,
-  args: string[],
-  options: OptionsType
-): Promise<RunReturnType<RunOptions & OptionsType, 'n/a'>>;
-/**
- * Runs (executes) `file` with the given `args` with respect to the given
- * `options`.
- *
- * With this call signature, `stdout` and `stderr` will be coerced to type
- * `string`.
- *
- * Note that, by default, this function rejects on a non-zero exit code. Set
- * `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
- */
+  args?: string[],
+  options?: undefined
+): Promise<RunReturnType>;
 export async function run<OptionsType extends RunOptions>(
   file: string,
   args?: string[],
   options?: OptionsType
-): Promise<RunReturnType<RunOptions & OptionsType>>;
-export async function run(
+): Promise<RunReturnType<OptionsType>>;
+export async function run<OptionsType extends RunOptions = DefaultRunOptions>(
   file: string,
   args?: string[],
-  { useIntermediate, coerceOutputToString = true, ...execaOptions }: RunOptions = {}
+  options?: OptionsType
 ): Promise<unknown> {
   const runDebug = debug.extend(String(++runCounter));
+
+  const {
+    useIntermediate,
+    coerceOutputToString = true,
+    ...execaOptions
+  } = options || ({} as RunOptions);
 
   runDebug(`executing command: ${file}${args ? ` ${args.join(' ')}` : ''}`);
   runDebug('execution options: %O', execaOptions);
   runDebug('using intermediate result: %O', !!useIntermediate);
 
-  coerceOutputToString &&= !execaOptions.lines;
-  runDebug('output coercion: %O', coerceOutputToString);
+  const shouldCoerceOutputToString = coerceOutputToString && !execaOptions.lines;
+  runDebug('output coercion: %O', shouldCoerceOutputToString);
 
   const intermediateResult = (await import('execa')).execa(file, args, execaOptions);
 
   await useIntermediate?.(intermediateResult);
   const finalResult = await intermediateResult;
 
-  if (coerceOutputToString) {
+  if (shouldCoerceOutputToString) {
     /* istanbul ignore next */
     finalResult.stdout = finalResult.stdout?.toString() ?? '';
     /* istanbul ignore next */
@@ -136,8 +78,8 @@ export async function run(
  * Runs (executes) `file` with the given `args` with respect to the given
  * `options` (merged with `{ stdout: 'inherit', stderr: 'inherit' }`).
  *
- * Note that, by default, this function rejects on a non-zero exit code.
- * Set `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
+ * Note that, by default, this function rejects on a non-zero exit code. Set
+ * `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
  *
  * @see {@link run}
  */
@@ -161,57 +103,28 @@ export async function runWithInheritedIo(
  * Runs (executes) `file` with the given `args` with respect to the given
  * `options`.
  *
- * Note that this function DOES NOT REJECT on a non-zero exit code.
+ * Note that, by default, this function:
  *
- * @see {@link run}
+ * 1. **DOES NOT REJECT on a non-zero exit code.**
+ *
+ * 2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
+ *    true`) to override this.
  */
-export async function runNoRejectOnBadExit<
-  OptionsType extends Omit<RunOptions, 'reject'> & { lines: true }
->(
+export async function runNoRejectOnBadExit(
   file: string,
-  args: string[],
-  options: OptionsType
-): Promise<RunReturnType<Omit<RunOptions, 'reject'> & OptionsType, 'array'>>;
-/**
- * Runs (executes) `file` with the given `args` with respect to the given
- * `options`.
- *
- * Note that this function DOES NOT REJECT on a non-zero exit code.
- *
- * @see {@link run}
- */
-export async function runNoRejectOnBadExit<
-  OptionsType extends Omit<RunOptions, 'reject'> & {
-    coerceOutputToString: false;
-  }
->(
-  file: string,
-  args: string[],
-  options: OptionsType
-): Promise<RunReturnType<Omit<RunOptions, 'reject'> & OptionsType, 'n/a'>>;
-/**
- * Runs (executes) `file` with the given `args` with respect to the given
- * `options`.
- *
- * With this call signature, `stdout` and `stderr` will be coerced to type
- * `string`.
- *
- * Note that this function DOES NOT REJECT on a non-zero exit code.
- *
- * @see {@link run}
- */
+  args?: string[],
+  options?: undefined
+): Promise<RunReturnType>;
 export async function runNoRejectOnBadExit<
   OptionsType extends Omit<RunOptions, 'reject'>
 >(
   file: string,
   args?: string[],
   options?: OptionsType
-): Promise<RunReturnType<Omit<RunOptions, 'reject'> & OptionsType>>;
-export async function runNoRejectOnBadExit(
-  file: string,
-  args?: string[],
-  options: Omit<RunOptions, 'reject'> = {}
-): Promise<unknown> {
+): Promise<RunReturnType<OptionsType>>;
+export async function runNoRejectOnBadExit<
+  OptionsType extends Omit<RunOptions, 'reject'> = Omit<DefaultRunOptions, 'reject'>
+>(file: string, args?: string[], options?: OptionsType): Promise<unknown> {
   return run(file, args, { ...options, reject: false });
 }
 
@@ -220,10 +133,18 @@ export async function runNoRejectOnBadExit(
  * the given `args` with respect to the given `options`.
  *
  * Additional arguments specified via the returned {@link run} function will be
- * appended to `args`. Additional options specified via the returned {@link run}
- * function will overwrite existing options in `options` (via `Object.assign`).
+ * appended to `args`. On the other hand, additional options specified via the
+ * returned {@link run} function will _overwrite_ existing options in `options`
+ * (via `Object.assign`).
+ *
+ * Note that, by default, the returned {@link run} function:
+ *
+ * 1. Rejects on a non-zero exit code. Set `reject: false` to override this.
+ *
+ * 2. Coerces output to a string. Set `coerceOutputToString: false` (or
+ *    `lines: true`) to override this.
  */
-export function runnerFactory<FactoryOptionsType extends RunOptions>(
+export function runnerFactory<FactoryOptionsType extends RunOptions = DefaultRunOptions>(
   file: string,
   args?: string[],
   options?: FactoryOptionsType
@@ -233,56 +154,30 @@ export function runnerFactory<FactoryOptionsType extends RunOptions>(
   const factoryOptions = options;
 
   /**
-   * Runs (executes) `file` with the given `args` with respect to the given
-   * `options`.
+   * Runs (executes) with respect to the factory parameters used to generate
+   * this function.
    *
-   * With this call signature, `stdout` and `stderr` will be of type `string[]`.
+   * Additional arguments specified via `args` will be appended to the
+   * corresponding factory parameter. On the other hand, additional options
+   * specified via `options` will _overwrite_ corresponding factory options (via
+   * `Object.assign`).
    *
-   * Note that, by default, this function rejects on a non-zero exit code. Set
-   * `reject: false` to override this.
+   * Note that, by default (unless modified at the factory level), this
+   * function:
+   *
+   * 1. Rejects on a non-zero exit code. Set `reject: false` to override this.
+   *
+   * 2. Coerces output to a string. Set `coerceOutputToString: false` (or
+   *    `lines: true`) to override this.
    */
-  async function factoryRunner<LocalOptionsType extends RunOptions & { lines: true }>(
-    args: string[],
-    options: LocalOptionsType
-  ): Promise<
-    RunReturnType<RunOptions & Merge<FactoryOptionsType, LocalOptionsType>, 'array'>
-  >;
-  /**
-   * Runs (executes) `file` with the given `args` with respect to the given
-   * `options`.
-   *
-   * Note that, by default, this function rejects on a non-zero exit code. Set
-   * `reject: false` to override this.
-   */
-  async function factoryRunner<
-    LocalOptionsType extends RunOptions & { coerceOutputToString: false }
-  >(
-    args: string[],
-    options: LocalOptionsType
-  ): Promise<
-    RunReturnType<RunOptions & Merge<FactoryOptionsType, LocalOptionsType>, 'n/a'>
-  >;
-  /**
-   * Runs (executes) `file` with the given `args` with respect to the given
-   * `options`.
-   *
-   * Note that, by default, this function rejects on a non-zero exit code. Set
-   * `reject: false` to override this.
-   */
+  async function factoryRunner(
+    args?: string[],
+    options?: undefined
+  ): Promise<RunReturnType<FactoryOptionsType>>;
   async function factoryRunner<LocalOptionsType extends RunOptions>(
     args?: string[],
     options?: LocalOptionsType
-  ): Promise<
-    Simplify<
-      FactoryOptionsType extends RunOptions & { lines: true }
-        ? RunReturnType<RunOptions & FactoryOptionsType & LocalOptionsType, 'array'>
-        : FactoryOptionsType extends RunOptions & {
-              coerceOutputToString: false;
-            }
-          ? RunReturnType<RunOptions & FactoryOptionsType & LocalOptionsType, 'n/a'>
-          : RunReturnType<RunOptions & FactoryOptionsType & LocalOptionsType>
-    >
-  >;
+  ): Promise<RunReturnType<Merge<FactoryOptionsType, LocalOptionsType>>>;
   async function factoryRunner(args?: string[], options?: RunOptions): Promise<unknown> {
     return run(file, [...(factoryArgs || []), ...(args || [])], {
       ...factoryOptions,

@@ -9,9 +9,11 @@ import {
   runWithInheritedIo
 } from 'universe+run';
 
+import type { RunOptions } from 'universe+run';
+
 describe('::run', () => {
   it('should be rejectable', async () => {
-    const params: NonNullable<Parameters<typeof run>[2]> = {};
+    const params: NonNullable<Parameters<typeof run<RunOptions>>[2]> = {};
     expect(params).type.toBeAssignableWith<{ reject: true }>();
     expect(params).type.toBeAssignableWith<{ reject: false }>();
   });
@@ -107,6 +109,26 @@ describe('::run', () => {
       ).all
     ).type.toBe<string[]>();
   });
+
+  it('returns correct type when passed generic options', async () => {
+    const options: RunOptions = {};
+
+    expect((await run('file', ['args'])).stdout).type.toBe<string>();
+    expect((await run('file', ['args'])).stderr).type.toBe<string>();
+    expect((await run('file', ['args'])).all).type.toBe<undefined>();
+
+    expect((await run('file', ['args'], options)).stdout).type.toBeAssignableWith<
+      string | string[] | undefined
+    >();
+
+    expect((await run('file', ['args'], options)).stderr).type.toBeAssignableWith<
+      string | string[] | undefined
+    >();
+
+    expect((await run('file', ['args'], options)).all).type.toBeAssignableWith<
+      string | string[] | undefined
+    >();
+  });
 });
 
 describe('::runWithInheritedIo', () => {
@@ -131,6 +153,11 @@ describe('::runWithInheritedIo', () => {
     expect(await runWithInheritedIo('file', ['args'])).type.not.toHaveProperty('stdout');
     expect(await runWithInheritedIo('file', ['args'])).type.not.toHaveProperty('stderr');
     expect(await runWithInheritedIo('file', ['args'])).type.not.toHaveProperty('stdio');
+  });
+
+  it('accepts generic options', async () => {
+    const options: RunOptions = {};
+    await runWithInheritedIo('file', ['args'], options);
   });
 });
 
@@ -292,6 +319,26 @@ describe('::runNoRejectOnBadExit', () => {
         })
       ).all
     ).type.toBe<string[]>();
+  });
+
+  it('returns correct type when passed generic options', async () => {
+    const options: RunOptions = {};
+
+    expect((await runNoRejectOnBadExit('file', ['args'])).stdout).type.toBe<string>();
+    expect((await runNoRejectOnBadExit('file', ['args'])).stderr).type.toBe<string>();
+    expect((await runNoRejectOnBadExit('file', ['args'])).all).type.toBe<undefined>();
+
+    expect(
+      (await runNoRejectOnBadExit('file', ['args'], options)).stdout
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runNoRejectOnBadExit('file', ['args'], options)).stderr
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runNoRejectOnBadExit('file', ['args'], options)).all
+    ).type.toBeAssignableWith<string | string[] | undefined>();
   });
 });
 
@@ -537,5 +584,37 @@ describe('::runnerFactory', () => {
         })
       ).all
     ).type.toBe<string[]>();
+  });
+
+  it('returns correct type when passed generic options', async () => {
+    const options: RunOptions = {};
+
+    expect((await runnerFactory('file', ['args'])()).stdout).type.toBe<string>();
+    expect((await runnerFactory('file', ['args'])()).stderr).type.toBe<string>();
+    expect((await runnerFactory('file', ['args'])()).all).type.toBe<undefined>();
+
+    expect(
+      (await runnerFactory('file', ['args'], options)()).stdout
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runnerFactory('file', ['args'], options)()).stderr
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runnerFactory('file', ['args'], options)()).all
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runnerFactory('file', ['args'])([], options)).stdout
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runnerFactory('file', ['args'])([], options)).stderr
+    ).type.toBeAssignableWith<string | string[] | undefined>();
+
+    expect(
+      (await runnerFactory('file', ['args'])([], options)).all
+    ).type.toBeAssignableWith<string | string[] | undefined>();
   });
 });
