@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "execa": "^9.5.2",
-    "rejoinder": "^1.2.4",
+    "rejoinder": "^1.2.5",
     "type-fest": "^4.34.1"
   },
   "engines": {
