@@ -94,8 +94,7 @@ export async function runWithInheritedIo(
   return run(file, args, {
     ...options,
     coerceOutputToString: false,
-    stdout: 'inherit',
-    stderr: 'inherit'
+    stdio: 'inherit'
   }) as Promise<Omit<RunReturnType, 'all' | 'stdout' | 'stderr' | 'stdio'>>;
 }
 
