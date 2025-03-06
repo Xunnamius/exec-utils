@@ -69,7 +69,7 @@
   "dependencies": {
     "core-js": "^3.40.0",
     "execa": "^9.5.2",
-    "rejoinder": "^1.2.4",
+    "rejoinder": "^1.2.5",
     "strip-final-newline": "^4.0.0",
     "type-fest": "^4.34.1"
   },
