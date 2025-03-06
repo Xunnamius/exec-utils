@@ -2,10 +2,9 @@ import { createDebugLogger } from 'rejoinder';
 
 import { globalDebuggerNamespace } from 'universe+run:constant.ts';
 
-import type { Merge } from 'type-fest';
-
 import type {
   DefaultRunOptions,
+  RunnerFactoryReturnType,
   RunOptions,
   RunReturnType
 } from 'universe+run:types.ts';
@@ -186,42 +185,18 @@ export function runnerFactory<FactoryOptionsType extends RunOptions = DefaultRun
   file: string,
   args?: string[],
   options?: FactoryOptionsType
-) {
+): RunnerFactoryReturnType<FactoryOptionsType> {
   // ? Hide these names from intellisense
   const factoryArgs = args;
   const factoryOptions = options;
 
-  /**
-   * Runs (executes) with respect to the factory parameters used to generate
-   * this function.
-   *
-   * Additional arguments specified via `args` will be appended to the
-   * corresponding factory parameter. On the other hand, additional options
-   * specified via `options` will _overwrite_ corresponding factory options (via
-   * `Object.assign`).
-   *
-   * Note that, by default (unless modified at the factory level), this
-   * function:
-   *
-   * 1. Rejects on a non-zero exit code. Set `reject: false` to override this.
-   *
-   * 2. Coerces output to a string. Set `coerceOutputToString: false` (or
-   *    `lines: true`) to override this.
-   */
-  async function factoryRunner(
+  return async function factoryRunner(
     args?: string[],
-    options?: undefined
-  ): Promise<RunReturnType<FactoryOptionsType>>;
-  async function factoryRunner<LocalOptionsType extends RunOptions>(
-    args?: string[],
-    options?: LocalOptionsType
-  ): Promise<RunReturnType<Merge<FactoryOptionsType, LocalOptionsType>>>;
-  async function factoryRunner(args?: string[], options?: RunOptions): Promise<unknown> {
+    options?: RunOptions
+  ): Promise<RunReturnType<RunOptions>> {
     return run(file, [...(factoryArgs || []), ...(args || [])], {
       ...factoryOptions,
       ...options
     });
-  }
-
-  return factoryRunner;
+  } as RunnerFactoryReturnType<FactoryOptionsType>;
 }

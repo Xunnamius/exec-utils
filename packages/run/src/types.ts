@@ -158,3 +158,56 @@ export type RunReturnType<OptionsType extends RunOptions = DefaultRunOptions> = 
         : ExecaResult<ReifiedOptionsType>
     : never
 >;
+
+/**
+ * @see `runnerFactory`
+ */
+export type RunnerFactoryReturnType<
+  FactoryOptionsType extends RunOptions = DefaultRunOptions
+> = {
+  /**
+   * Runs (executes) with respect to the factory parameters used to generate
+   * this function.
+   *
+   * Additional arguments specified via `args` will be appended to the
+   * corresponding factory parameter. On the other hand, additional options
+   * specified via `options` will _overwrite_ corresponding factory options (via
+   * `Object.assign`).
+   *
+   * Note that, by default (unless modified at the factory level), this
+   * function:
+   *
+   * 1. Rejects on a non-zero exit code. Set `reject: false` to override this.
+   *
+   * 2. Coerces output to a string. Set `coerceOutputToString: false` (or
+   *    `lines: true`) to override this.
+   *
+   * 3. Elides Node.js debugger strings. Set
+   *    `elideNodeDebuggerStringsFromStderr: false` to override this.
+   */
+  (args?: string[], options?: undefined): Promise<RunReturnType<FactoryOptionsType>>;
+  /**
+   * Runs (executes) with respect to the factory parameters used to generate
+   * this function.
+   *
+   * Additional arguments specified via `args` will be appended to the
+   * corresponding factory parameter. On the other hand, additional options
+   * specified via `options` will _overwrite_ corresponding factory options (via
+   * `Object.assign`).
+   *
+   * Note that, by default (unless modified at the factory level), this
+   * function:
+   *
+   * 1. Rejects on a non-zero exit code. Set `reject: false` to override this.
+   *
+   * 2. Coerces output to a string. Set `coerceOutputToString: false` (or
+   *    `lines: true`) to override this.
+   *
+   * 3. Elides Node.js debugger strings. Set
+   *    `elideNodeDebuggerStringsFromStderr: false` to override this.
+   */
+  <LocalOptionsType extends RunOptions>(
+    args?: string[],
+    options?: LocalOptionsType
+  ): Promise<RunReturnType<Merge<FactoryOptionsType, LocalOptionsType>>>;
+};
