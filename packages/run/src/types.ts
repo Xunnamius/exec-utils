@@ -24,6 +24,16 @@ export type RunOptions = ExecaOptions & {
    * output will be coerced to an array of strings regardless of this option.
    */
   coerceOutputToString?: boolean;
+  /**
+   * When attaching a debugger to a Node.js process, such as when using the
+   * `--inspect*` flags, Node will add it's own "debugger attached" lines to
+   * stderr. Set `elideNodeDebuggerStringsFromStderr` to `true` to remove them
+   * automatically, or `false` to do nothing.
+   *
+   * @default true
+   * @see https://github.com/nodejs/node/issues/34799
+   */
+  elideNodeDebuggerStringsFromStderr?: boolean;
 };
 
 /**
@@ -32,6 +42,7 @@ export type RunOptions = ExecaOptions & {
 export type DefaultRunOptions = RunOptions & {
   lines: false;
   coerceOutputToString: true;
+  elideNodeDebuggerStringsFromStderr: true;
   all: false;
 };
 

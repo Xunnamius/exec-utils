@@ -69,6 +69,61 @@ describe('::run', () => {
       expect(result.all).toStrictEqual(testOutput.split('\n'));
     }
   });
+
+  it('elides Node.js inspector debug strings from stderr by default', async () => {
+    expect.hasAssertions();
+
+    const testScriptString = /* js */ `
+    console.error('Waiting for the debugger to disconnect...');
+    console.error('Debugger listening on ws://127.0.0.1:9229/4dad5ead-6482-44b3-9c2c-8e880788863f');
+    console.error('For help, see: https://nodejs.org/en/docs/inspector');
+    console.error('Debugger attached.');
+    console.error('test');
+    console.error('Debugger attached.');
+    console.error('Debugger attached.');
+    console.error('Waiting for the debugger to disconnect...');
+    console.error('Waiting for the debugger to disconnect...');
+`;
+
+    {
+      const result = await run('node', ['-e', testScriptString]);
+
+      expect(result.stdout).toBeEmpty();
+      expect(result.stderr).toBe('test');
+      expect(result.exitCode).toBe(0);
+    }
+
+    {
+      const result = await run('node', ['-e', testScriptString], {
+        lines: true
+      });
+
+      expect(result.stdout).toBeEmpty();
+      expect(result.stderr).toStrictEqual(['test']);
+      expect(result.exitCode).toBe(0);
+    }
+
+    {
+      const result = await run('node', ['-e', testScriptString], {
+        elideNodeDebuggerStringsFromStderr: false
+      });
+
+      expect(result.stdout).toBeEmpty();
+      expect(result.stderr).not.toBe('test');
+      expect(result.exitCode).toBe(0);
+    }
+
+    {
+      const result = await run('node', ['-e', testScriptString], {
+        lines: true,
+        elideNodeDebuggerStringsFromStderr: false
+      });
+
+      expect(result.stdout).toBeEmpty();
+      expect(result.stderr).not.toStrictEqual(['test']);
+      expect(result.exitCode).toBe(0);
+    }
+  });
 });
 
 describe('::runWithInheritedIo', () => {

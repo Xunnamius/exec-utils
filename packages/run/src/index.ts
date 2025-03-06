@@ -13,6 +13,13 @@ import type {
 let runCounter = 0;
 const debug = createDebugLogger({ namespace: globalDebuggerNamespace });
 
+const nodejsDebugStringRegExps = [
+  /^Debugger attached\.(\n|$)/gm,
+  /^Debugger listening on .+(\n|$)/gm,
+  /^For help, see: https:\/\/nodejs\.org\/en\/docs\/inspector(\n|$)/gm,
+  /^Waiting for the debugger to disconnect\.\.\.(\n|$)/gm
+];
+
 export type { Subprocess } from 'execa' with { 'resolution-mode': 'import' };
 export type * from 'universe+run:types.ts';
 
@@ -27,6 +34,9 @@ export type * from 'universe+run:types.ts';
  *
  * 2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
  *    true`) to override this.
+ *
+ * 3. Elides Node.js debugger strings. Set `elideNodeDebuggerStringsFromStderr:
+ *    false` to override this.
  */
 export async function run(
   file: string,
@@ -48,6 +58,7 @@ export async function run<OptionsType extends RunOptions = DefaultRunOptions>(
   const {
     useIntermediate,
     coerceOutputToString = true,
+    elideNodeDebuggerStringsFromStderr = true,
     ...execaOptions
   } = options || ({} as RunOptions);
 
@@ -57,7 +68,9 @@ export async function run<OptionsType extends RunOptions = DefaultRunOptions>(
 
   const shouldCoerceOutputToString = coerceOutputToString && !execaOptions.lines;
   runDebug('output coercion: %O', shouldCoerceOutputToString);
+  runDebug('debug elision: %O', elideNodeDebuggerStringsFromStderr);
 
+  const stripFinalNewline = (await import('strip-final-newline')).default;
   const intermediateResult = (await import('execa')).execa(file, args, execaOptions);
 
   await useIntermediate?.(intermediateResult);
@@ -68,6 +81,25 @@ export async function run<OptionsType extends RunOptions = DefaultRunOptions>(
     finalResult.stdout = finalResult.stdout?.toString() ?? '';
     /* istanbul ignore next */
     finalResult.stderr = finalResult.stderr?.toString() ?? '';
+  }
+
+  if (elideNodeDebuggerStringsFromStderr) {
+    /* istanbul ignore else */
+    if (typeof finalResult.stderr === 'string') {
+      let { stderr } = finalResult;
+
+      nodejsDebugStringRegExps.forEach((regExp) => {
+        stderr = stderr.replaceAll(regExp, '');
+      });
+
+      finalResult.stderr =
+        execaOptions.stripFinalNewline === false ? stderr : stripFinalNewline(stderr);
+    } else if (Array.isArray(finalResult.stderr)) {
+      finalResult.stderr = finalResult.stderr.filter((filterTarget_) => {
+        const filterTarget = String(filterTarget_);
+        return nodejsDebugStringRegExps.every((regExp) => !filterTarget.match(regExp));
+      });
+    }
   }
 
   runDebug('execution result: %O', finalResult);
@@ -94,6 +126,7 @@ export async function runWithInheritedIo(
   return run(file, args, {
     ...options,
     coerceOutputToString: false,
+    elideNodeDebuggerStringsFromStderr: false,
     stdio: 'inherit'
   }) as Promise<Omit<RunReturnType, 'all' | 'stdout' | 'stderr' | 'stdio'>>;
 }
@@ -108,6 +141,9 @@ export async function runWithInheritedIo(
  *
  * 2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
  *    true`) to override this.
+ *
+ * 3. Elides Node.js debugger strings. Set `elideNodeDebuggerStringsFromStderr:
+ *    false` to override this.
  */
 export async function runNoRejectOnBadExit(
   file: string,
@@ -142,6 +178,9 @@ export async function runNoRejectOnBadExit<
  *
  * 2. Coerces output to a string. Set `coerceOutputToString: false` (or
  *    `lines: true`) to override this.
+ *
+ * 3. Elides Node.js debugger strings. Set `elideNodeDebuggerStringsFromStderr:
+ *    false` to override this.
  */
 export function runnerFactory<FactoryOptionsType extends RunOptions = DefaultRunOptions>(
   file: string,

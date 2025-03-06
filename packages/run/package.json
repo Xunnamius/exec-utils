@@ -67,9 +67,14 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
+    "core-js": "^3.40.0",
     "execa": "^9.5.2",
     "rejoinder": "^1.2.4",
+    "strip-final-newline": "^4.0.0",
     "type-fest": "^4.34.1"
+  },
+  "devDependencies": {
+    "@-xun/fs": "^1.0.0"
   },
   "engines": {
     "node": "^18.20.0 || ^20.18.0 || ^22.12.0 || >=23.3.0"
