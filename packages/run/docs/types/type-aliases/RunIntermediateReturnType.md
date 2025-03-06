@@ -8,7 +8,7 @@
 
 > **RunIntermediateReturnType**\<`OptionsType`\>: `ExecaResultPromise`\<`OptionsType`\>
 
-Defined in: [packages/run/src/types.ts:41](https://github.com/Xunnamius/exec-utils/blob/bf5e65a2582e7e8aeaba89dc9f922437cbff4809/packages/run/src/types.ts#L41)
+Defined in: [packages/run/src/types.ts:52](https://github.com/Xunnamius/exec-utils/blob/49a686926412eee8a176a3c8893c62abf78eaebf/packages/run/src/types.ts#L52)
 
 ## Type Parameters
 

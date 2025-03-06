@@ -8,7 +8,7 @@
 
 > **RunOptions**: `ExecaOptions` & `object`
 
-Defined in: [packages/run/src/types.ts:12](https://github.com/Xunnamius/exec-utils/blob/bf5e65a2582e7e8aeaba89dc9f922437cbff4809/packages/run/src/types.ts#L12)
+Defined in: [packages/run/src/types.ts:12](https://github.com/Xunnamius/exec-utils/blob/49a686926412eee8a176a3c8893c62abf78eaebf/packages/run/src/types.ts#L12)
 
 ## Type declaration
 
@@ -22,6 +22,25 @@ coerced to empty strings.
 
 Defaults to `true` unless RunOptions.lines is `true`, in which case
 output will be coerced to an array of strings regardless of this option.
+
+### elideNodeDebuggerStringsFromStderr?
+
+> `optional` **elideNodeDebuggerStringsFromStderr**: `boolean`
+
+When attaching a debugger to a Node.js process, such as when using the
+`--inspect*` flags, Node will add it's own "debugger attached" lines to
+stderr. Set `elideNodeDebuggerStringsFromStderr` to `true` to remove them
+automatically, or `false` to do nothing.
+
+#### Default
+
+```ts
+true
+```
+
+#### See
+
+https://github.com/nodejs/node/issues/34799
 
 ### useIntermediate()?
 

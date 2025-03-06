@@ -31,6 +31,12 @@ Re-exports [RunIntermediateReturnType](../types/type-aliases/RunIntermediateRetu
 
 ***
 
+### RunnerFactoryReturnType
+
+Re-exports [RunnerFactoryReturnType](../types/type-aliases/RunnerFactoryReturnType.md)
+
+***
+
 ### RunOptions
 
 Re-exports [RunOptions](../types/type-aliases/RunOptions.md)
