@@ -67,7 +67,7 @@
     "test:packages:all": "symbiote test --env NODE_NO_WARNINGS=1 --tests all-local --scope unlimited --coverage"
   },
   "dependencies": {
-    "core-js": "^3.40.0",
+    "core-js": "^3.42.0",
     "execa": "^9.5.2",
     "rejoinder": "^1.2.5",
     "strip-final-newline": "^4.0.0",
