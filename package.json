@@ -3,7 +3,6 @@
   "version": "0.0.0-monorepo",
   "private": true,
   "description": "Monorepo for the exec-utils project",
-  "keywords": [],
   "homepage": "https://github.com/Xunnamius/exec-utils#readme",
   "bugs": {
     "url": "https://github.com/Xunnamius/exec-utils/issues"
@@ -18,7 +17,8 @@
   "type": "commonjs",
   "workspaces": [
     "packages/*",
-    "!packages/*.ignore*"
+    "!packages/*.ignore*",
+    "!packages/ignore.*"
   ],
   "scripts": {
     "build:topological": "symbiote project topology --run build --env NODE_NO_WARNINGS=1",
@@ -42,6 +42,6 @@
     "@-xun/symbiote": "^4.14.5"
   },
   "engines": {
-    "node": "^20.18.0 || ^22.12.0 || >=23.3.0"
+    "node": "^20.18.0 || >=22.12.0"
   }
 }

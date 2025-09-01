@@ -42,17 +42,17 @@
     // ! directly, consider regenerating aliases across the entire project with:
     // ! `npx symbiote project renovate --regenerate-assets --assets-preset ...`
     "paths": {
-      "multiverse+run:*": ["packages/run/src/*"],
-      "multiverse+run": ["packages/run/src/index.ts"],
-      "rootverse+run:*": ["packages/run/*"],
-      "rootverse:*": ["*"],
-      "universe+run:*": ["packages/run/src/*"],
-      "universe+run": ["packages/run/src/index.ts"],
-      "universe:*": ["src/*"],
       "universe": ["src/index.ts"],
-      "testverse+run:*": ["packages/run/test/*"],
+      "universe:*": ["src/*"],
+      "universe+run": ["packages/run/src/index.ts"],
+      "universe+run:*": ["packages/run/src/*"],
+      "multiverse+run": ["packages/run/src/index.ts"],
+      "multiverse+run:*": ["packages/run/src/*"],
       "testverse:*": ["test/*"],
-      "typeverse:*": ["types/*"]
+      "testverse+run:*": ["packages/run/test/*"],
+      "typeverse:*": ["types/*"],
+      "rootverse+run:*": ["packages/run/*"],
+      "rootverse:*": ["*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -68,9 +68,14 @@
   ],
   "exclude": [
     "**/dist/**/*",
+    "**/.next/**/*",
+    "**/.wrangler/**/*",
     "**/node_modules/**/*",
     "**/*.ignore",
-    "**/*.ignore.*/**/*",
-    "**/ignore.*"
+    "**/*.ignore/**/*",
+    "**/ignore.*",
+    "**/ignore.*/**/*",
+    "**/*.ignore.*",
+    "**/*.ignore.*/**/*"
   ]
 }
