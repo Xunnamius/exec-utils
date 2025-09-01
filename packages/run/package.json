@@ -70,7 +70,6 @@
     "core-js": "^3.41.0",
     "execa": "^9.5.2",
     "rejoinder": "^1.2.5",
-    "strip-final-newline": "^4.0.0",
     "type-fest": "^4.37.0"
   },
   "devDependencies": {
