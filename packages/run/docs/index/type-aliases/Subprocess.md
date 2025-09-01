@@ -6,7 +6,7 @@
 
 # Type Alias: Subprocess\<OptionsType\>
 
-> **Subprocess**\<`OptionsType`\>: `Omit`\<`ChildProcess`, keyof `ExecaCustomSubprocess`\<`OptionsType`\>\> & `ExecaCustomSubprocess`\<`OptionsType`\>
+> **Subprocess**\<`OptionsType`\> = `Omit`\<`ChildProcess`, keyof `ExecaCustomSubprocess`\<`OptionsType`\>\> & `ExecaCustomSubprocess`\<`OptionsType`\>
 
 Defined in: packages/run/node\_modules/execa/types/subprocess/subprocess.d.ts:106
 
@@ -14,4 +14,6 @@ Defined in: packages/run/node\_modules/execa/types/subprocess/subprocess.d.ts:10
 
 ## Type Parameters
 
-• **OptionsType** *extends* `Options` = `Options`
+### OptionsType
+
+`OptionsType` *extends* `Options` = `Options`

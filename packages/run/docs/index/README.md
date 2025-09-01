@@ -12,6 +12,7 @@
 
 ## Functions
 
+- [default](functions/default.md)
 - [run](functions/run.md)
 - [runnerFactory](functions/runnerFactory.md)
 - [runNoRejectOnBadExit](functions/runNoRejectOnBadExit.md)
