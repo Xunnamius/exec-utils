@@ -106,7 +106,8 @@ export async function run<OptionsType extends RunOptions = DefaultRunOptions>(
 
 /**
  * Runs (executes) `file` with the given `args` with respect to the given
- * `options` (merged with `{ stdout: 'inherit', stderr: 'inherit' }`).
+ * `options` (merged _under_ `{ coerceOutputToString: false,
+ * elideNodeDebuggerStringsFromStderr: false, stdio: 'inherit' }`).
  *
  * Note that, by default, this function rejects on a non-zero exit code. Set
  * `reject: false` to override this, or use {@link runNoRejectOnBadExit}.
@@ -135,7 +136,7 @@ export async function runWithInheritedIo(
  *
  * Note that, by default, this function:
  *
- * 1. **DOES NOT REJECT on a non-zero exit code.**
+ * 1. **DOES NOT REJECT on a non-zero exit code** (cannot be overridden).
  *
  * 2. Coerces output to a string. Set `coerceOutputToString: false` (or `lines:
  *    true`) to override this.
