@@ -8,7 +8,7 @@
 
 > **RunReturnType**\<`OptionsType`\> = `Simplify`\<\[`Merge`\<[`DefaultRunOptions`](DefaultRunOptions.md), `OptionsType`\>\] *extends* \[infer ReifiedOptionsType\] ? `ReifiedOptionsType` *extends* `object` ? `Merge`\<`ExecaResult`\<`ReifiedOptionsType`\>, `object` & `ReifiedOptionsType`\[`"all"`\] *extends* `true` ? `object` : `unknown`\> : `ReifiedOptionsType` *extends* `object` ? `Merge`\<`ExecaResult`\<`ReifiedOptionsType`\>, `object` & `ReifiedOptionsType`\[`"all"`\] *extends* `true` ? `object` : `unknown`\> : `ExecaResult`\<`ReifiedOptionsType`\> : `never`\>
 
-Defined in: [packages/run/src/types.ts:58](https://github.com/Xunnamius/exec-utils/blob/e4fc4234f5ee2e08c53563e96d123577dfd5f204/packages/run/src/types.ts#L58)
+Defined in: [src/types.ts:58](https://github.com/Xunnamius/exec-utils/blob/3bb00a84b928ff5f4b317e16762258ce31d78968/packages/run/src/types.ts#L58)
 
 ## Type Parameters
 

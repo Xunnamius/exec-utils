@@ -8,10 +8,11 @@
 
 > **runWithInheritedIo**(`file`, `args?`, `options?`): `Promise`\<`Omit`\<\{ `all`: `undefined`; `cause`: `unknown`; `code`: `undefined` \| `string`; `command`: `string`; `cwd`: `string`; `durationMs`: `number`; `escapedCommand`: `string`; `exitCode?`: `number`; `failed`: `boolean`; `ipcOutput`: \[\] \| (`null` \| `string` \| `number` \| `boolean` \| `object` \| readonly `JsonMessage`[] \| \{\[`key`: `string` \| `number`\]: `JsonMessage`; \})[]; `isCanceled`: `boolean`; `isForcefullyTerminated`: `boolean`; `isGracefullyCanceled`: `boolean`; `isMaxBuffer`: `boolean`; `isTerminated`: `boolean`; `message`: `undefined` \| `string`; `name`: `undefined` \| `string`; `originalMessage`: `undefined` \| `string`; `pipedFrom`: `Result`\<`Options`\>[]; `shortMessage`: `undefined` \| `string`; `signal?`: `Signals`; `signalDescription?`: `string`; `stack`: `undefined` \| `string`; `stderr`: `string`; `stdio`: `MapResultStdio`\<readonly \[`StdinOptionCommon`\<`false`, `false`\>, `StdoutStderrOptionCommon`\<`false`, `false`\>, `StdoutStderrOptionCommon`\<`false`, `false`\>, `StdioExtraOptionCommon`\<`false`\>\] \| readonly \[`undefined`, `undefined`, `undefined`\] \| readonly \[`"pipe"`, `"pipe"`, `"pipe"`\] \| readonly \[`"inherit"`, `"inherit"`, `"inherit"`\] \| readonly \[`"ignore"`, `"ignore"`, `"ignore"`\] \| readonly \[`"overlapped"`, `"overlapped"`, `"overlapped"`\]\>; `stdout`: `string`; `timedOut`: `boolean`; \}, `"stdout"` \| `"stderr"` \| `"all"` \| `"stdio"`\>\>
 
-Defined in: [packages/run/src/index.ts:116](https://github.com/Xunnamius/exec-utils/blob/e4fc4234f5ee2e08c53563e96d123577dfd5f204/packages/run/src/index.ts#L116)
+Defined in: [src/index.ts:117](https://github.com/Xunnamius/exec-utils/blob/3bb00a84b928ff5f4b317e16762258ce31d78968/packages/run/src/index.ts#L117)
 
 Runs (executes) `file` with the given `args` with respect to the given
-`options` (merged with `{ stdout: 'inherit', stderr: 'inherit' }`).
+`options` (merged _under_ `{ coerceOutputToString: false,
+elideNodeDebuggerStringsFromStderr: false, stdio: 'inherit' }`).
 
 Note that, by default, this function rejects on a non-zero exit code. Set
 `reject: false` to override this, or use [runNoRejectOnBadExit](runNoRejectOnBadExit.md).

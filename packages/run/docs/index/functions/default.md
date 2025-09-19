@@ -8,7 +8,7 @@
 
 > **default**(`input`): `string` \| `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: [packages/run/src/index.ts:203](https://github.com/Xunnamius/exec-utils/blob/e4fc4234f5ee2e08c53563e96d123577dfd5f204/packages/run/src/index.ts#L203)
+Defined in: [src/index.ts:204](https://github.com/Xunnamius/exec-utils/blob/3bb00a84b928ff5f4b317e16762258ce31d78968/packages/run/src/index.ts#L204)
 
 ## Parameters
 

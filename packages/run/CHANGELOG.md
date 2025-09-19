@@ -27,52 +27,64 @@ this project adheres to [Semantic Versioning][2].
 
 <br />
 
-## @-xun/run[@1.1.0][11] (2025-03-06)
+### 🏗️ Patch @-xun/run[@2.0.1][11] (2025-09-19)
+
+#### 🪄 Fixes
+
+- **packages/run:** update intellisense hints to accurately reflect override settings ([6a2b72a][12])
+
+#### ⚙️ Build System
+
+- **deps:** bump type-fest from 4.41.0 to 5.0.1 ([db45d6f][13])
+
+<br />
+
+## @-xun/run[@1.1.0][14] (2025-03-06)
 
 ### ✨ Features
 
-- **packages/run:** add `elideNodeDebuggerStringsFromStderr` option ([596a4ca][12])
+- **packages/run:** add `elideNodeDebuggerStringsFromStderr` option ([596a4ca][15])
 
 ### 🪄 Fixes
 
-- **packages/run:** improve `runnerFactory` intellisense ([dd1e2c7][13])
+- **packages/run:** improve `runnerFactory` intellisense ([dd1e2c7][16])
 
 ### ⚙️ Build System
 
-- **deps:** bump rejoinder from 1.2.4 to 1.2.5 ([e950bdc][14])
-- **deps:** bump type-fest from 4.34.1 to 4.37.0 ([129df48][15])
+- **deps:** bump rejoinder from 1.2.4 to 1.2.5 ([e950bdc][17])
+- **deps:** bump type-fest from 4.34.1 to 4.37.0 ([129df48][18])
 
 <br />
 
-## @-xun/run[@1.0.0][16] (2025-02-16)
+## @-xun/run[@1.0.0][19] (2025-02-16)
 
 ### ✨ Features
 
-- **packages/run:** greatly improve exported types and debug output ([6bc3c2f][17])
+- **packages/run:** greatly improve exported types and debug output ([6bc3c2f][20])
 
 <br />
 
-### 🏗️ Patch @-xun/run[@1.0.3][18] (2025-02-22)
+### 🏗️ Patch @-xun/run[@1.0.3][21] (2025-02-22)
 
 #### 🪄 Fixes
 
-- **packages/run:** ensure `runWithInheritedIo` inherits all io file descriptors ([3ca5d5a][19])
+- **packages/run:** ensure `runWithInheritedIo` inherits all io file descriptors ([3ca5d5a][22])
 
 <br />
 
-### 🏗️ Patch @-xun/run[@1.0.2][20] (2025-02-18)
+### 🏗️ Patch @-xun/run[@1.0.2][23] (2025-02-18)
 
 #### 🪄 Fixes
 
-- **packages/run:** account for generic parameters; simplify type logic ([0673591][21])
+- **packages/run:** account for generic parameters; simplify type logic ([0673591][24])
 
 <br />
 
-### 🏗️ Patch @-xun/run[@1.0.1][22] (2025-02-17)
+### 🏗️ Patch @-xun/run[@1.0.1][25] (2025-02-17)
 
 #### 🪄 Fixes
 
-- Improve types and intellisense, ensure functionality matches documentation ([99f80c9][23])
+- Improve types and intellisense, ensure functionality matches documentation ([99f80c9][26])
 
 [1]: https://conventionalcommits.org
 [2]: https://semver.org
@@ -84,16 +96,19 @@ this project adheres to [Semantic Versioning][2].
 [8]: https://github.com/Xunnamius/exec-utils/commit/1a997c03f4233623640aa8fbb35f9d5ecab8ebea
 [9]: https://github.com/Xunnamius/exec-utils/commit/471a944a81be2024bff2b65ad52e8ae81d60e12f
 [10]: https://github.com/Xunnamius/exec-utils/commit/7edb489f9139da5039c24dba1bb74df108adec2b
-[11]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.3...@-xun/run@1.1.0
-[12]: https://github.com/Xunnamius/exec-utils/commit/596a4ca63a2b17b0a8e1d7467f14581cfd100d5d
-[13]: https://github.com/Xunnamius/exec-utils/commit/dd1e2c7feb508649e5b5164f882176380432901f
-[14]: https://github.com/Xunnamius/exec-utils/commit/e950bdc88246d4df68cb4e148b36441b3b936f55
-[15]: https://github.com/Xunnamius/exec-utils/commit/129df486660f117039b2de4cd8ed17bd7f5a2f35
-[16]: https://github.com/Xunnamius/exec-utils/compare/6bc3c2f64e318fb45aac40a5534d0b575a57f170...@-xun/run@1.0.0
-[17]: https://github.com/Xunnamius/exec-utils/commit/6bc3c2f64e318fb45aac40a5534d0b575a57f170
-[18]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.2...@-xun/run@1.0.3
-[19]: https://github.com/Xunnamius/exec-utils/commit/3ca5d5a48edf233b2c3f06a5558c6dca408bd366
-[20]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.1...@-xun/run@1.0.2
-[21]: https://github.com/Xunnamius/exec-utils/commit/06735914ae278783fb4ee6a4cc1a3732191459ee
-[22]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.0...@-xun/run@1.0.1
-[23]: https://github.com/Xunnamius/exec-utils/commit/99f80c9423153055098aa3bf7b6f903f3ee1b65f
+[11]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@2.0.0...@-xun/run@2.0.1
+[12]: https://github.com/Xunnamius/exec-utils/commit/6a2b72a043a586c1914adf39bfc6fc50b89d2460
+[13]: https://github.com/Xunnamius/exec-utils/commit/db45d6f4a17832363d5cbba7b52eb562a762d15b
+[14]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.3...@-xun/run@1.1.0
+[15]: https://github.com/Xunnamius/exec-utils/commit/596a4ca63a2b17b0a8e1d7467f14581cfd100d5d
+[16]: https://github.com/Xunnamius/exec-utils/commit/dd1e2c7feb508649e5b5164f882176380432901f
+[17]: https://github.com/Xunnamius/exec-utils/commit/e950bdc88246d4df68cb4e148b36441b3b936f55
+[18]: https://github.com/Xunnamius/exec-utils/commit/129df486660f117039b2de4cd8ed17bd7f5a2f35
+[19]: https://github.com/Xunnamius/exec-utils/compare/6bc3c2f64e318fb45aac40a5534d0b575a57f170...@-xun/run@1.0.0
+[20]: https://github.com/Xunnamius/exec-utils/commit/6bc3c2f64e318fb45aac40a5534d0b575a57f170
+[21]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.2...@-xun/run@1.0.3
+[22]: https://github.com/Xunnamius/exec-utils/commit/3ca5d5a48edf233b2c3f06a5558c6dca408bd366
+[23]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.1...@-xun/run@1.0.2
+[24]: https://github.com/Xunnamius/exec-utils/commit/06735914ae278783fb4ee6a4cc1a3732191459ee
+[25]: https://github.com/Xunnamius/exec-utils/compare/@-xun/run@1.0.0...@-xun/run@1.0.1
+[26]: https://github.com/Xunnamius/exec-utils/commit/99f80c9423153055098aa3bf7b6f903f3ee1b65f
